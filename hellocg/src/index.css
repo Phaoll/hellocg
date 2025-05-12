@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.gradient-bg-custom {
-  @apply bg-gradient-to-br from-[var(--color1)] via-[var(--color2)] via-[var(--color3)] to-[var(--color4)] min-h-screen w-full;
-  --color1: #068888;
-  --color2: #61adcd;
-  --color3: #64ad55;
-  --color4: #b3d16f;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -84,9 +76,17 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-[hsl(var(--border))];
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
   }
+}
+
+.gradient-bg-custom {
+  @apply bg-gradient-to-br from-[var(--color1)] via-[var(--color2)] via-[var(--color3)] to-[var(--color4)] min-h-screen w-full;
+  --color1: #068888;
+  --color2: #61adcd;
+  --color3: #64ad55;
+  --color4: #b3d16f;
 }

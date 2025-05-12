@@ -1,8 +1,10 @@
 import { useState } from "react";
-import ThemeRow, { ThemeItem } from "./components/themerow";
-import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
-import questionTemplate from "./question.template";
+import "./index.css";
+
 import SimpleSidebar from "./components/simpleSidebar";
+import ThemeRow, { ThemeItem } from "./components/themeRow";
+import { SidebarProvider } from "./components/ui/sidebar";
+import questionTemplate from "./question.template";
 
 interface QuestionTemplateType {
   [key: string]: ThemeItem;
