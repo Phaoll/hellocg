@@ -19,12 +19,12 @@ const QuestionButton: FC<QuestionButtonProps> = ({
   return (
     <Button
       onClick={handleClick}
-      className="flex items-center gap-3 h-16 px-6"
+      className="relative flex items-center gap-3 h-16 px-6"
       type="button"
       aria-label={`Question ${questionNumber}`}
     >
       <img
-        src="./public/helloPointLogo.png"
+        src="./helloPointLogo.png"
         alt=""
         className="w-8 h-8 object-cover rounded"
       />

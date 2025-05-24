@@ -64,7 +64,7 @@ export function SimpleSidebar({
                     key={"Configurer"}
                     className={collapsed ? "flex justify-center" : ""}
                   >
-                    {/* <TooltipProvider>
+                    <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <SidebarMenuButton asChild>
@@ -84,7 +84,7 @@ export function SimpleSidebar({
                           </TooltipContent>
                         )}
                       </Tooltip>
-                    </TooltipProvider> */}
+                    </TooltipProvider>
                     Toto
                   </SidebarMenuItem>
                 </DialogTrigger>

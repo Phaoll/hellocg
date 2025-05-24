@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./index.css";
 
 import ThemeRow, { type ThemeItem } from "./components/themeRow";
@@ -95,37 +94,12 @@ const typedQuestionTemplate = {
 } as QuestionTemplateType;
 
 function App() {
-  const [collapsed, setCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setCollapsed(!collapsed);
-  };
-
   return (
-    <div className="gradient-bg-custom w-full">
-      <div className="flex h-screen w-full overflow-hidden">
-        {/* <SidebarProvider> */}
-        {/* <SimpleSidebar collapsed={collapsed} toggleSidebar={toggleSidebar} /> */}
-        {/* <main
-          className={`flex-1 transition-all duration-300 ease-in-out ${
-            collapsed ? "pl-16" : "pl-64"
-          } overflow-y-auto`}
-        > */}
-        <div
-        // className="w-full flex flex-col items-center justify-top p-6 text-gray-800"
-        >
-          {Object.entries(typedQuestionTemplate).map(
-            ([themeKey, themeData]) => (
-              <ThemeRow
-                key={themeKey}
-                themeKey={themeKey}
-                themeData={themeData}
-              />
-            )
-          )}
-        </div>
-        {/* </main> */}
-        {/* </SidebarProvider> */}
+    <div className="flex h-full w-full overflow-hidden">
+      <div className="w-full h-full flex flex-col items-center justify-top p-6 text-gray-800">
+        {Object.entries(typedQuestionTemplate).map(([themeKey, themeData]) => (
+          <ThemeRow key={themeKey} themeKey={themeKey} themeData={themeData} />
+        ))}
       </div>
     </div>
   );
