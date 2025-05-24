@@ -10,12 +10,10 @@ const typedQuestionTemplate = questionTemplate as QuestionTemplateType;
 
 function App() {
   return (
-    <div className="flex h-full w-full overflow-hidden">
-      <div className="w-full h-full flex flex-col items-center justify-start p-6 text-gray-800 gap-6">
-        {Object.entries(typedQuestionTemplate).map(([themeKey, themeData]) => (
-          <ThemeRow key={themeKey} themeKey={themeKey} themeData={themeData} />
-        ))}
-      </div>
+    <div className="flex flex-col min-h-screen justify-center p-6 text-gray-800 gap-6">
+      {Object.entries(typedQuestionTemplate).map(([themeKey, themeData]) => (
+        <ThemeRow key={themeKey} themeKey={themeKey} themeData={themeData} />
+      ))}
     </div>
   );
 }

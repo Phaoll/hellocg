@@ -19,7 +19,7 @@ const QuestionButton: FC<QuestionButtonProps> = ({
   return (
     <Button
       onClick={handleClick}
-      className="relative flex items-center gap-3 h-16 px-6 bg-transparent"
+      className="relative flex items-center gap-3 px-6 bg-transparent"
       type="button"
       aria-label={`Question ${questionNumber}`}
     >
