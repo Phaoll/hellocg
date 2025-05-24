@@ -29,6 +29,6 @@
   "include": [
     "src",
     "src/data/prompt.template.js",
-    "src/data/question.template.js"
+    "src/data/question.template.ts"
   ]
 }
