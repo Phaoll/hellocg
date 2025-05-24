@@ -1,4 +1,10 @@
-import { PanelRightClose, PanelRightOpen, PencilIcon } from "lucide-react";
+import {
+  PanelLeftClose,
+  PanelLeftOpen,
+  PanelRightClose,
+  PanelRightOpen,
+  PencilIcon,
+} from "lucide-react";
 
 import { ConfigurationDialogContent } from "./configuration.dialogContent";
 
@@ -47,15 +53,14 @@ export function SimpleSidebar({
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? (
-              <PanelRightOpen size={18} />
+              <PanelLeftOpen size={18} />
             ) : (
-              <PanelRightClose size={18} />
+              <PanelLeftClose size={18} />
             )}
           </Button>
         </div>
 
         <SidebarGroup>
-          {!collapsed && <SidebarGroupLabel>Application</SidebarGroupLabel>}
           <SidebarGroupContent>
             <SidebarMenu>
               <Dialog>
@@ -85,7 +90,6 @@ export function SimpleSidebar({
                         )}
                       </Tooltip>
                     </TooltipProvider>
-                    Toto
                   </SidebarMenuItem>
                 </DialogTrigger>
                 <ConfigurationDialogContent />
