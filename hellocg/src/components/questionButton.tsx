@@ -19,18 +19,18 @@ const QuestionButton: FC<QuestionButtonProps> = ({
   return (
     <Button
       onClick={handleClick}
-      className="relative flex items-center gap-3 px-6 bg-transparent"
+      className="w-full h-full min-h-32 min-w-32 aspect-square relative flex justify-center bg-gray-500"
       type="button"
       aria-label={`Question ${questionNumber}`}
     >
       <img
         src="./helloPointLogo.png"
         alt=""
-        className="w-8 h-8 object-cover rounded"
+        className="w-full h-full min-w-8 min-h-8 object-cover rounded"
       />
 
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <span className="text-black font-bold text-xl drop-shadow-md">
+        <span className="text-black font-bold text-4xl drop-shadow-md">
           {questionNumber.replace("question", "")}
         </span>
       </div>
