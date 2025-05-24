@@ -1,4 +1,5 @@
-import { FC } from "react";
+import type { FC } from "react";
+
 import QuestionButton from "./questionButton";
 
 interface QuestionItem {
@@ -22,19 +23,25 @@ interface ThemeRowProps {
 
 const ThemeRow: FC<ThemeRowProps> = ({ themeKey, themeData }) => {
   return (
-    <div className="flex flex-row mb-6 p-4 bg-white rounded shadow-md w-full max-w-2xl">
-      <h2 className="text-xl font-bold mb-4">{themeData.themeName}</h2>
-      {Object.entries(themeData.themeQuestions).map(
-        ([questionKey, questionData]) => (
-          <QuestionButton
-            key={`${themeKey}${questionKey}`}
-            questionNumber={questionKey}
-            question={questionData.question}
-            answer={questionData.answer}
-          />
-        )
-      )}
-    </div>
+    <>
+      <div className="flex flex-row items-center mb-6 p-4 bg-white rounded shadow-md w-full">
+        <div className="min-w-40 mr-6">
+          <h2 className="text-xl font-bold">{themeData.themeName}</h2>
+        </div>
+        <div className="flex flex-row flex-wrap gap-4">
+          {Object.entries(themeData.themeQuestions).map(
+            ([questionKey, questionData]) => (
+              <QuestionButton
+                key={`${themeKey}${questionKey}`}
+                questionNumber={questionKey}
+                question={questionData.question}
+                answer={questionData.answer}
+              />
+            )
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 

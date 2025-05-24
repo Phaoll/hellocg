@@ -1,4 +1,5 @@
-import { FC } from "react";
+import type { FC } from "react";
+import { Button } from "./ui/button";
 
 interface QuestionButtonProps {
   questionNumber: string;
@@ -14,22 +15,26 @@ const QuestionButton: FC<QuestionButtonProps> = ({
   const handleClick = () => {
     alert(`${question} -> ${answer}`);
   };
+
   return (
-    <button
+    <Button
       onClick={handleClick}
-      className={`relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
+      className="flex items-center gap-3 h-16 px-6"
+      type="button"
+      aria-label={`Question ${questionNumber}`}
     >
       <img
-        src={"./public/helloPointLogo.png"}
-        className="w-full h-full object-cover"
+        src="./public/helloPointLogo.png"
+        alt=""
+        className="w-8 h-8 object-cover rounded"
       />
 
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-white font-bold text-6xl drop-shadow-md">
+      <div className="absolute inset-0 flex items-center justify-center z-10">
+        <span className="text-black font-bold text-xl drop-shadow-md">
           {questionNumber.replace("question", "")}
         </span>
       </div>
-    </button>
+    </Button>
   );
 };
 

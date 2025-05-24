@@ -1,12 +1,9 @@
 import { PanelRightClose, PanelRightOpen, PencilIcon } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
 
+import { ConfigurationDialogContent } from "./configuration.dialogContent";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
   Sidebar,
   SidebarContent,
@@ -17,17 +14,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { ConfigurationDialogContent } from "./configuration.dialogContent";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-
-// Menu items.
-const items = [
-  {
-    title: "Configurer",
-    url: "#",
-    icon: PencilIcon,
-  },
-];
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface SimpleSidebarProps {
   collapsed: boolean;
@@ -72,7 +64,7 @@ export function SimpleSidebar({
                     key={"Configurer"}
                     className={collapsed ? "flex justify-center" : ""}
                   >
-                    <TooltipProvider>
+                    {/* <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <SidebarMenuButton asChild>
@@ -92,7 +84,8 @@ export function SimpleSidebar({
                           </TooltipContent>
                         )}
                       </Tooltip>
-                    </TooltipProvider>
+                    </TooltipProvider> */}
+                    Toto
                   </SidebarMenuItem>
                 </DialogTrigger>
                 <ConfigurationDialogContent />
