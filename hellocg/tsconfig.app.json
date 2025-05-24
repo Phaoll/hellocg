@@ -26,5 +26,9 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "public/prompt.template.js", "public/question.template.js"]
+  "include": [
+    "src",
+    "src/data/prompt.template.js",
+    "src/data/question.template.js"
+  ]
 }

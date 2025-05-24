@@ -24,7 +24,7 @@ interface ThemeRowProps {
 const ThemeRow: FC<ThemeRowProps> = ({ themeKey, themeData }) => {
   return (
     <>
-      <div className="flex flex-row items-center mb-6 p-4 bg-white rounded shadow-md w-full">
+      <div className="flex flex-row items-center p-4 bg-white rounded shadow-md w-full flex-1">
         <div className="min-w-40 mr-6">
           <h2 className="text-xl font-bold">{themeData.themeName}</h2>
         </div>
