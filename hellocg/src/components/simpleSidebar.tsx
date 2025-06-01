@@ -1,6 +1,6 @@
 import { FileQuestion, Settings, Settings2 } from "lucide-react";
 
-import { ConfigurationDialogContent } from "./configuration.dialogContent";
+import { ConfigurationDialogContent } from "./questionSetting.dialogContent";
 
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -15,12 +15,15 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import PlayerCard from "./playerCard";
+import { useState } from "react";
 
 // TODO
 // - Use reddux for number of users and parameters in general
 // - Implement closable sidebar
 
 export function SimpleSidebar() {
+  const [isOpenQuestionsSettingDialog, setIsOpenQuestionsSettingDialog] =
+    useState(false);
   return (
     <Sidebar
       className={`h-full transition-all duration-300 
@@ -54,20 +57,27 @@ export function SimpleSidebar() {
                 </div>
               </SidebarMenuItem>
             </DialogTrigger>
-            <ConfigurationDialogContent />
+            <ConfigurationDialogContent
+              setIsOpenQuestionsSettingDialog={setIsOpenQuestionsSettingDialog}
+            />
           </Dialog>
-          <Dialog>
+          <Dialog
+            open={isOpenQuestionsSettingDialog}
+            onOpenChange={setIsOpenQuestionsSettingDialog}
+          >
             <DialogTrigger>
               <SidebarMenuItem key={"Configurer"}>
                 <div
                   className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md w-full`}
                 >
                   <FileQuestion size={20} />
-                  <span>Set questions</span>
+                  <span>Nouvelles questions</span>
                 </div>
               </SidebarMenuItem>
             </DialogTrigger>
-            <ConfigurationDialogContent />
+            <ConfigurationDialogContent
+              setIsOpenQuestionsSettingDialog={setIsOpenQuestionsSettingDialog}
+            />
           </Dialog>
         </SidebarMenu>
       </SidebarFooter>

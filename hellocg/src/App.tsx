@@ -1,26 +1,30 @@
 import "./index.css";
 
-import ThemeRow, { type ThemeItem } from "./components/themeRow";
-import questionTemplate from "./data/question.template";
+import ThemeRow from "./components/themeRow";
 import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
 import SimpleSidebar from "./components/simpleSidebar";
-interface QuestionTemplateType {
-  [key: string]: ThemeItem;
-}
+import {
+  selectQuestionsDict,
+  type QuestionTemplateType,
+} from "./store/slices/questionsSlice";
+import { useAppSelector } from "./store/hooks";
 
-// Copy paste of the question
 // Display of the question
+// Deploy
 
 // TODO not MVP
 // Styling
 // Parameters
+// Option to add a timer
+// Grey the question already answered
+// Implémenter difficulté de 1 à 10
 // Responsiveness
 // Un petit toaster propre
-// Implémenter difficulté de 1 à 10
-
-const typedQuestionTemplate = questionTemplate as QuestionTemplateType;
 
 function App() {
+  const questions = useAppSelector(selectQuestionsDict);
+  const typedQuestionTemplate = questions as QuestionTemplateType;
+
   return (
     <SidebarProvider>
       <SimpleSidebar />

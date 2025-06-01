@@ -7,12 +7,18 @@ import {
 } from "@/components/ui/dialog";
 import { DialogHeader } from "./ui/dialog";
 import llmPromptTemplate from "@/data/prompt.template";
-import questionTemplate from "@/data/question.template";
 import { AlertCircle, Check, Copy } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  selectQuestionsDict,
+  setQuestionsFromString,
+} from "@/store/slices/questionsSlice";
+import { useSelector } from "react-redux";
+import { type Dispatch, type SetStateAction } from "react";
 
 // TODO
 // - Tooltip around the copy button
@@ -78,7 +84,22 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   );
 };
 
-export function ConfigurationDialogContent() {
+interface ConfigurationDialogContentProps {
+  setIsOpenQuestionsSettingDialog: Dispatch<SetStateAction<boolean>>;
+}
+
+export function ConfigurationDialogContent({
+  setIsOpenQuestionsSettingDialog,
+}: ConfigurationDialogContentProps) {
+  const dispatch = useDispatch();
+  const [newQuestionsValue, setNewQuestionsValue] = useState("");
+  const currentQuestions = useSelector(selectQuestionsDict);
+
+  const handleConfirmLoadQuestions = () => {
+    dispatch(setQuestionsFromString(newQuestionsValue));
+    setIsOpenQuestionsSettingDialog(false);
+  };
+
   return (
     <DialogContent>
       <DialogHeader>
@@ -96,14 +117,23 @@ export function ConfigurationDialogContent() {
       </DialogHeader>
       <div>Collez le retour de votre LLM ci-dessous:</div>
       <Input
-        // className="h-48 text-left wrap-anywhere"
-        placeholder={`${JSON.stringify(questionTemplate)}`}
+        placeholder={`${JSON.stringify(currentQuestions)}`}
+        onChange={(e) => {
+          setNewQuestionsValue(e.target.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleConfirmLoadQuestions();
+          }
+        }}
       />
       <DialogFooter>
         <DialogClose asChild>
           <Button variant="outline">Annuler</Button>
         </DialogClose>
-        <Button type="submit">Sauvegarder ces questions</Button>
+        <Button type="submit" onClick={handleConfirmLoadQuestions}>
+          Sauvegarder ces questions
+        </Button>
       </DialogFooter>
     </DialogContent>
   );

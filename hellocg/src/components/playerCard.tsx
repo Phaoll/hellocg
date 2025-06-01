@@ -46,19 +46,19 @@ export default function PlayerCard() {
         <Button
           className="p-2 aspect-square flex-none"
           onClick={() => {
-            setCounterA(counterA + 1);
+            setCounterA(counterA - 1);
           }}
         >
-          <Plus />
+          <Minus />
         </Button>
         <div className="p-2 bg-gray-200 grow h-10 text-center rounded-lg aspect-square">{`${counterA}`}</div>
         <Button
           className="p-2 aspect-square flex-none"
           onClick={() => {
-            setCounterA(counterA - 1);
+            setCounterA(counterA + 1);
           }}
         >
-          <Minus />
+          <Plus />
         </Button>
       </div>
     </div>
