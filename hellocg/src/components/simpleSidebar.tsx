@@ -1,4 +1,4 @@
-import { FileQuestion, Settings, Settings2 } from "lucide-react";
+import { FileQuestion, Settings2 } from "lucide-react";
 
 import { ConfigurationDialogContent } from "./questionSetting.dialogContent";
 

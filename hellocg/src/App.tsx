@@ -20,6 +20,7 @@ import { useAppSelector } from "./store/hooks";
 // Implémenter difficulté de 1 à 10
 // Responsiveness
 // Un petit toaster propre
+// vrai nom de domaine + https
 
 function App() {
   const questions = useAppSelector(selectQuestionsDict);

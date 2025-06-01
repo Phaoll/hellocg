@@ -2,15 +2,12 @@ import { useState, type FC } from "react";
 import { Button } from "./ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { Minus, Plus } from "lucide-react";
 
 // TODO
 // - Change opacity of background when Drawer is drawn
