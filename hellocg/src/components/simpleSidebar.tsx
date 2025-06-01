@@ -16,6 +16,10 @@ import {
 } from "@/components/ui/sidebar";
 import PlayerCard from "./playerCard";
 
+// TODO
+// - Use reddux for number of users and parameters in general
+// - Implement closable sidebar
+
 export function SimpleSidebar() {
   return (
     <Sidebar

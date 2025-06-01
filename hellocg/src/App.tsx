@@ -2,13 +2,21 @@ import "./index.css";
 
 import ThemeRow, { type ThemeItem } from "./components/themeRow";
 import questionTemplate from "./data/question.template";
-import { Sidebar } from "lucide-react";
 import { SidebarInset, SidebarProvider } from "./components/ui/sidebar";
 import SimpleSidebar from "./components/simpleSidebar";
-import { useState } from "react";
 interface QuestionTemplateType {
   [key: string]: ThemeItem;
 }
+
+// Copy paste of the question
+// Display of the question
+
+// TODO not MVP
+// Styling
+// Parameters
+// Responsiveness
+// Un petit toaster propre
+// Implémenter difficulté de 1 à 10
 
 const typedQuestionTemplate = questionTemplate as QuestionTemplateType;
 

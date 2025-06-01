@@ -28,7 +28,7 @@
   },
   "include": [
     "src",
-    "src/data/prompt.template.js",
+    "src/data/prompt.template.ts",
     "src/data/question.template.ts"
   ]
 }
