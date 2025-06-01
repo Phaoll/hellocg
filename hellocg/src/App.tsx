@@ -13,15 +13,9 @@ interface QuestionTemplateType {
 const typedQuestionTemplate = questionTemplate as QuestionTemplateType;
 
 function App() {
-  const [collapsed, setCollapsed] = useState(true);
-
-  function toggleCollapse() {
-    setCollapsed(!collapsed);
-  }
-
   return (
     <SidebarProvider>
-      <SimpleSidebar collapsed={collapsed} toggleSidebar={toggleCollapse} />
+      <SimpleSidebar />
       <SidebarInset className="overflow-hidden">
         <div className="h-screen max-w-full flex flex-col justify-center items-center p-6 text-gray-800 gap-6">
           {Object.entries(typedQuestionTemplate).map(
