@@ -84,13 +84,13 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   );
 };
 
-interface ConfigurationDialogContentProps {
+interface QuestionsSettingsDialogContentProps {
   setIsOpenQuestionsSettingDialog: Dispatch<SetStateAction<boolean>>;
 }
 
-export function ConfigurationDialogContent({
+export function QuestionsSettingsDialogContent({
   setIsOpenQuestionsSettingDialog,
-}: ConfigurationDialogContentProps) {
+}: QuestionsSettingsDialogContentProps) {
   const dispatch = useDispatch();
   const [newQuestionsValue, setNewQuestionsValue] = useState("");
   const currentQuestions = useSelector(selectQuestionsDict);

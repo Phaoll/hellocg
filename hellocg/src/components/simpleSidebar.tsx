@@ -1,7 +1,5 @@
 import { FileQuestion, Settings2 } from "lucide-react";
 
-import { ConfigurationDialogContent } from "./questionSetting.dialogContent";
-
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
   Sidebar,
@@ -16,6 +14,8 @@ import {
 } from "@/components/ui/sidebar";
 import PlayerCard from "./playerCard";
 import { useState } from "react";
+import { AppSettingsDialogContent } from "./appSetting.dialogContent";
+import { QuestionsSettingsDialogContent } from "./questionsSetting.dialogContent";
 
 // TODO
 // - Use reddux for number of users and parameters in general
@@ -53,12 +53,12 @@ export function SimpleSidebar() {
                   className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md w-full`}
                 >
                   <Settings2 size={20} />
-                  <span>Settings</span>
+                  <span>Paramètres</span>
                 </div>
               </SidebarMenuItem>
             </DialogTrigger>
-            <ConfigurationDialogContent
-              setIsOpenQuestionsSettingDialog={setIsOpenQuestionsSettingDialog}
+            <AppSettingsDialogContent
+              setIsOpenAppSettingsDialog={setIsOpenQuestionsSettingDialog}
             />
           </Dialog>
           <Dialog
@@ -75,7 +75,7 @@ export function SimpleSidebar() {
                 </div>
               </SidebarMenuItem>
             </DialogTrigger>
-            <ConfigurationDialogContent
+            <QuestionsSettingsDialogContent
               setIsOpenQuestionsSettingDialog={setIsOpenQuestionsSettingDialog}
             />
           </Dialog>
