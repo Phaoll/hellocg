@@ -21,6 +21,7 @@ import { useAppSelector } from "./store/hooks";
 // Responsiveness
 // Un petit toaster propre
 // vrai nom de domaine + https
+// Favicon + Nom d'onglet
 
 function App() {
   const questions = useAppSelector(selectQuestionsDict);
