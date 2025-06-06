@@ -47,7 +47,10 @@ const QuestionButton: FC<QuestionButtonProps> = ({
           </div>
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent
+        onEscapeKeyDown={(_) => setIsDrawerOpen(false)}
+        onInteractOutside={(_) => setIsDrawerOpen(false)}
+      >
         <div className="flex flex-col mx-auto w-full items-center justify-center">
           <DrawerHeader>
             <DrawerTitle>{question}</DrawerTitle>
