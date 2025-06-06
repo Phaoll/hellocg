@@ -1,7 +1,10 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/store";
+import { APP_THEME_LIST } from "@/config";
 
-export const APP_THEME_NAMES = ["helloworld_light", "helloworld_dark"] as const;
+export const APP_THEME_NAMES = APP_THEME_LIST.map(
+  (theme) => theme.indexCSSName
+);
 
 export type AppThemeName = (typeof APP_THEME_NAMES)[number];
 

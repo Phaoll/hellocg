@@ -101,13 +101,13 @@ export function QuestionsSettingsDialogContent({
   };
 
   return (
-    <DialogContent>
+    <DialogContent style={{ backgroundColor: "hsl(var(--middleground))" }}>
       <DialogHeader>
         <DialogTitle>Configurer les questions</DialogTitle>
         <div className="flex flex-row gap-4 justify-center items-center">
           <DialogDescription>
             Copiez la prompt ci-contre et collez là dans un LLM pour que
-            celui-ci vous fournisse des questions originales. Copiez ensuite le
+            celui-ci vous fournisse des questions inédites. Copiez ensuite le
             code fournit par le LLM dans la zone ci-dessous pour lancer le jeu.
           </DialogDescription>
           <div className="justify-center items-center aspect-square">
@@ -129,9 +129,15 @@ export function QuestionsSettingsDialogContent({
       />
       <DialogFooter>
         <DialogClose asChild>
-          <Button variant="outline">Annuler</Button>
+          <Button variant="outline" className="font-bold">
+            Annuler
+          </Button>
         </DialogClose>
-        <Button type="submit" onClick={handleConfirmLoadQuestions}>
+        <Button
+          type="submit"
+          className="font-bold"
+          onClick={handleConfirmLoadQuestions}
+        >
           Sauvegarder ces questions
         </Button>
       </DialogFooter>
