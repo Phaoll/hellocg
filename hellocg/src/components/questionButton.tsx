@@ -46,12 +46,13 @@ const QuestionButton: FC<QuestionButtonProps> = ({
         </Button>
       </DrawerTrigger>
       <DrawerContent
+        style={{ backgroundColor: "hsl(var(--middleground))" }}
         onEscapeKeyDown={(_) => setIsDrawerOpen(false)}
         onInteractOutside={(_) => setIsDrawerOpen(false)}
       >
         <div className="flex flex-col mx-auto w-full items-center justify-center">
           <DrawerHeader>
-            <DrawerTitle>{question}</DrawerTitle>
+            <DrawerTitle className="text-3xl">{question}</DrawerTitle>
           </DrawerHeader>
           <details>
             <summary>Réponse</summary>

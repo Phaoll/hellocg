@@ -22,7 +22,7 @@ import { type Dispatch, type SetStateAction } from "react";
 
 // TODO
 // - Tooltip around the copy button
-// - Properly format JSON
+// - Hide and reveal inputs for new questions
 
 interface CopyButtonProps {
   className?: string;
