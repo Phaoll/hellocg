@@ -13,7 +13,6 @@ import type { RootState } from "./store";
 import { useEffect } from "react";
 
 // TODO
-// Option to add a timer
 // Grey the question already answered
 // Implémenter difficulté de 1 à 10
 // Un petit toaster propre

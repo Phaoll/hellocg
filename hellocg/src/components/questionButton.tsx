@@ -18,15 +18,20 @@ interface QuestionButtonProps {
   questionNumber: string;
   question: string;
   answer: string;
+  difficulty: number;
+  answered: boolean;
 }
 
 const QuestionButton: FC<QuestionButtonProps> = ({
   questionNumber,
   question,
   answer,
+  difficulty,
+  answered,
 }) => {
   const useTimer = useAppSelector(selectUseTimer);
   const timerMaxTime = useAppSelector(selectTimerMaxTime);
+  const [answeredState, setAnsweredState] = useState(answered);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState(timerMaxTime);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -55,6 +60,7 @@ const QuestionButton: FC<QuestionButtonProps> = ({
     setIsDrawerOpen(true);
     setTimeLeft(timerMaxTime);
     setIsTimerRunning(true);
+    setAnsweredState(true);
   };
 
   const getTimerColor = () => {
@@ -71,6 +77,7 @@ const QuestionButton: FC<QuestionButtonProps> = ({
           onClick={handleDrawerOpening}
           className="w-full h-full bg-transparent min-h-32 min-w-32 aspect-square relative flex justify-center"
           aria-label={`Question ${questionNumber}`}
+          disabled={answeredState}
         >
           <img
             src="./pointLogo.hellopoint.png"
@@ -79,7 +86,7 @@ const QuestionButton: FC<QuestionButtonProps> = ({
 
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <span className="font-bold text-6xl drop-shadow-md text-gray-500">
-              {questionNumber.replace("question", "")}
+              {difficulty}
             </span>
           </div>
         </Button>

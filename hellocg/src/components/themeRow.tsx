@@ -5,6 +5,8 @@ import QuestionButton from "./questionButton";
 interface QuestionItem {
   question: string;
   answer: string;
+  difficulty: number;
+  answered: boolean;
 }
 
 interface QuestionsDict {
@@ -41,6 +43,8 @@ const ThemeRow: FC<ThemeRowProps> = ({ themeKey, themeData }) => {
                 questionNumber={questionKey}
                 question={questionData.question}
                 answer={questionData.answer}
+                difficulty={questionData.difficulty}
+                answered={questionData.answered}
               />
             )
           )}

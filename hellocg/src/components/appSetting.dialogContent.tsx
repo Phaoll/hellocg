@@ -30,7 +30,6 @@ import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 
 // TODO
-// Timer setting
 // Toaster for player number out of range
 
 export function AppSettingsDialogContent() {
