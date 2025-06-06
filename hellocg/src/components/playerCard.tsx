@@ -51,7 +51,7 @@ export default function PlayerCard() {
         >
           <Minus />
         </Button>
-        <div className="flex flex-row items-center justify-center p-2 bg-gray-200 grow h-10 rounded-lg relative">
+        <div className="flex flex-row items-center justify-center p-2 bg-background grow h-10 rounded-lg relative">
           <div className="text-center font-semibold text-xl">{`${counterA}`}</div>
           <img
             src="./pointLogo.hellopoint.png"

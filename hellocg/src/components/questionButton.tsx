@@ -30,18 +30,16 @@ const QuestionButton: FC<QuestionButtonProps> = ({
       <DrawerTrigger asChild>
         <Button
           onClick={() => setIsDrawerOpen(true)}
-          className="w-full h-full min-h-32 min-w-32 aspect-square relative flex justify-center"
-          type="button"
+          className="w-full h-full bg-transparent min-h-32 min-w-32 aspect-square relative flex justify-center"
           aria-label={`Question ${questionNumber}`}
         >
           <img
             src="./pointLogo.hellopoint.png"
-            alt=""
             className="w-full h-full min-w-8 min-h-8 object-contain rounded"
           />
 
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <span className="text-black font-bold text-4xl drop-shadow-md">
+            <span className="font-bold text-6xl drop-shadow-md text-gray-500">
               {questionNumber.replace("question", "")}
             </span>
           </div>

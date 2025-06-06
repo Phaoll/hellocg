@@ -24,9 +24,12 @@ interface ThemeRowProps {
 const ThemeRow: FC<ThemeRowProps> = ({ themeKey, themeData }) => {
   return (
     <>
-      <div className="flex flex-1 flex-row p-4 bg-white rounded shadow-md h-full items-center justify-start">
+      <div
+        className="flex flex-1 flex-row p-4 rounded shadow-md h-full items-center justify-start bg-middleground"
+        style={{ backgroundColor: "hsl(var(--middleground))" }}
+      >
         <div className="flex-1 w-40 mr-6">
-          <h2 className="text-2xl text-center font-bold">
+          <h2 className="text-2xl text-center font-bold text-foreground">
             {themeData.themeName}
           </h2>
         </div>
