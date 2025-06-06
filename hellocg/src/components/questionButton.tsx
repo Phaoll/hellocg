@@ -10,7 +10,7 @@ import {
 } from "./ui/drawer";
 
 // TODO
-// - Change opacity of background when Drawer is drawn
+// Cleaner spoiler
 
 interface QuestionButtonProps {
   questionNumber: string;
@@ -30,14 +30,14 @@ const QuestionButton: FC<QuestionButtonProps> = ({
       <DrawerTrigger asChild>
         <Button
           onClick={() => setIsDrawerOpen(true)}
-          className="w-full h-full min-h-32 min-w-32 aspect-square relative flex justify-center bg-gray-500"
+          className="w-full h-full min-h-32 min-w-32 aspect-square relative flex justify-center"
           type="button"
           aria-label={`Question ${questionNumber}`}
         >
           <img
-            src="./helloPointLogo.png"
+            src="./pointLogo.hellopoint.png"
             alt=""
-            className="w-full h-full min-w-8 min-h-8 object-cover rounded"
+            className="w-full h-full min-w-8 min-h-8 object-contain rounded"
           />
 
           <div className="absolute inset-0 flex items-center justify-center z-10">

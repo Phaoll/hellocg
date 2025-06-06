@@ -21,7 +21,6 @@ import { selectPlayerNumber } from "@/store/slices/settingsSlice";
 
 // TODO
 // - Player avatar
-// - Implement closable sidebar
 
 export function SimpleSidebar() {
   const [isOpenQuestionsSettingDialog, setIsOpenQuestionsSettingDialog] =
@@ -38,7 +37,6 @@ export function SimpleSidebar() {
         <h1 className="text-center text-4xl">Hello CG</h1>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroupLabel className="text-2xl">Scores</SidebarGroupLabel>
         <SidebarGroup>
           <SidebarGroupContent className="gap-y-10">
             {Array.from(Array(playerNumber).keys()).map((number) => (

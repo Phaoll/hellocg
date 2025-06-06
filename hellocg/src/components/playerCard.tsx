@@ -25,7 +25,7 @@ export default function PlayerCard() {
   };
   return (
     <div className="flex flex-col">
-      <div className="p-2 text-center hover:bg-gray-50">
+      <div className="p-2 text-center font-semibold text-xl hover:bg-gray-50">
         {isEditing ? (
           <input
             type="text"
@@ -51,7 +51,14 @@ export default function PlayerCard() {
         >
           <Minus />
         </Button>
-        <div className="p-2 bg-gray-200 grow h-10 text-center rounded-lg aspect-square">{`${counterA}`}</div>
+        <div className="flex flex-row items-center justify-center p-2 bg-gray-200 grow h-10 rounded-lg relative">
+          <div className="text-center font-semibold text-xl">{`${counterA}`}</div>
+          <img
+            src="./pointLogo.hellopoint.png"
+            alt=""
+            className="h-6 w-6 object-contain rounded absolute right-2"
+          />
+        </div>
         <Button
           className="p-2 aspect-square flex-none"
           onClick={() => {
