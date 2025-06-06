@@ -16,14 +16,18 @@ import PlayerCard from "./playerCard";
 import { useState } from "react";
 import { AppSettingsDialogContent } from "./appSetting.dialogContent";
 import { QuestionsSettingsDialogContent } from "./questionsSetting.dialogContent";
+import { useAppSelector } from "@/store/hooks/hooks";
+import { selectPlayerNumber } from "@/store/slices/settingsSlice";
 
 // TODO
-// - Use reddux for number of users and parameters in general
+// - Player avatar
 // - Implement closable sidebar
 
 export function SimpleSidebar() {
   const [isOpenQuestionsSettingDialog, setIsOpenQuestionsSettingDialog] =
     useState(false);
+  const playerNumber = useAppSelector(selectPlayerNumber);
+
   return (
     <Sidebar
       className={`h-full transition-all duration-300 
@@ -37,10 +41,9 @@ export function SimpleSidebar() {
         <SidebarGroupLabel className="text-2xl">Scores</SidebarGroupLabel>
         <SidebarGroup>
           <SidebarGroupContent className="gap-y-10">
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
+            {Array.from(Array(playerNumber).keys()).map((number) => (
+              <PlayerCard key={number} />
+            ))}
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
@@ -57,9 +60,7 @@ export function SimpleSidebar() {
                 </div>
               </SidebarMenuItem>
             </DialogTrigger>
-            <AppSettingsDialogContent
-              setIsOpenAppSettingsDialog={setIsOpenQuestionsSettingDialog}
-            />
+            <AppSettingsDialogContent />
           </Dialog>
           <Dialog
             open={isOpenQuestionsSettingDialog}

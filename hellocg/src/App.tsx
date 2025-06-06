@@ -12,16 +12,11 @@ import { useSelector } from "react-redux";
 import type { RootState } from "./store";
 import { useEffect } from "react";
 
-// Display of the question
-// Deploy
-
-// TODO not MVP
+// TODO
 // Styling
-// Parameters
 // Option to add a timer
 // Grey the question already answered
 // Implémenter difficulté de 1 à 10
-// Responsiveness
 // Un petit toaster propre
 // vrai nom de domaine + https
 // Favicon + Nom d'onglet

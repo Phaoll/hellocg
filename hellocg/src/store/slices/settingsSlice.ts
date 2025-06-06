@@ -7,6 +7,7 @@ export type AppThemeName = (typeof APP_THEME_NAMES)[number];
 
 interface settingsState {
   appTheme: AppThemeName;
+  playerNumber: number;
 }
 
 const getStoredTheme = (): AppThemeName => {
@@ -21,6 +22,7 @@ const getStoredTheme = (): AppThemeName => {
 
 const initialState: settingsState = {
   appTheme: getStoredTheme(),
+  playerNumber: 4,
 };
 
 export const settingsSlice = createSlice({
@@ -38,11 +40,16 @@ export const settingsSlice = createSlice({
         root.setAttribute("data-theme", action.payload);
       }
     },
+    setPlayerNumber: (state, action: PayloadAction<number>) => {
+      state.playerNumber = action.payload;
+    },
   },
 });
 
-export const { setAppTheme } = settingsSlice.actions;
+export const { setAppTheme, setPlayerNumber } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
 
 export const selectTheme = (state: RootState) => state.settingsStore.appTheme;
+export const selectPlayerNumber = (state: RootState) =>
+  state.settingsStore.playerNumber;
