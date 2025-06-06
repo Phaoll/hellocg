@@ -11,6 +11,8 @@ export type AppThemeName = (typeof APP_THEME_NAMES)[number];
 interface settingsState {
   appTheme: AppThemeName;
   playerNumber: number;
+  useTimer: boolean;
+  timerMaxTime: number;
 }
 
 const getStoredTheme = (): AppThemeName => {
@@ -26,6 +28,8 @@ const getStoredTheme = (): AppThemeName => {
 const initialState: settingsState = {
   appTheme: getStoredTheme(),
   playerNumber: 4,
+  useTimer: false,
+  timerMaxTime: 20000, // 20 seconds
 };
 
 export const settingsSlice = createSlice({
@@ -46,13 +50,24 @@ export const settingsSlice = createSlice({
     setPlayerNumber: (state, action: PayloadAction<number>) => {
       state.playerNumber = action.payload;
     },
+    setUseTimer: (state, action: PayloadAction<boolean>) => {
+      state.useTimer = action.payload;
+    },
+    setTimerMaxTime: (state, action: PayloadAction<number>) => {
+      state.timerMaxTime = action.payload;
+    },
   },
 });
 
-export const { setAppTheme, setPlayerNumber } = settingsSlice.actions;
+export const { setAppTheme, setPlayerNumber, setUseTimer, setTimerMaxTime } =
+  settingsSlice.actions;
 
 export default settingsSlice.reducer;
 
 export const selectTheme = (state: RootState) => state.settingsStore.appTheme;
 export const selectPlayerNumber = (state: RootState) =>
   state.settingsStore.playerNumber;
+export const selectUseTimer = (state: RootState) =>
+  state.settingsStore.useTimer;
+export const selectTimerMaxTime = (state: RootState) =>
+  state.settingsStore.timerMaxTime;

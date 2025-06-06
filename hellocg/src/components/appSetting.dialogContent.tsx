@@ -9,8 +9,12 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import {
   selectPlayerNumber,
+  selectTimerMaxTime,
+  selectUseTimer,
   setAppTheme,
   setPlayerNumber,
+  setTimerMaxTime,
+  setUseTimer,
   type AppThemeName,
 } from "@/store/slices/settingsSlice";
 import { useDispatch } from "react-redux";
@@ -21,6 +25,9 @@ import {
   MAX_NUMBER_OF_PLAYER,
   MIN_NUMBER_OF_PLAYER,
 } from "@/config";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
+import { Slider } from "./ui/slider";
 
 // TODO
 // Timer setting
@@ -29,6 +36,8 @@ import {
 export function AppSettingsDialogContent() {
   const dispatch = useDispatch();
   const playerNumber = useAppSelector(selectPlayerNumber);
+  const useTimer = useAppSelector(selectUseTimer);
+  const timerMaxTime = useAppSelector(selectTimerMaxTime);
   const [playerCounter, setPlayerCounter] = useState(playerNumber);
 
   const handleSetAppTheme = (newTheme: AppThemeName) => {
@@ -43,6 +52,14 @@ export function AppSettingsDialogContent() {
       return;
     setPlayerCounter(newPlayerNumber);
     dispatch(setPlayerNumber(newPlayerNumber));
+  };
+
+  const handleUseTimerSwitch = () => {
+    dispatch(setUseTimer(!useTimer));
+  };
+
+  const handleTimerChange = (sliderValue: number) => {
+    dispatch(setTimerMaxTime(sliderValue * 1000));
   };
 
   return (
@@ -76,6 +93,7 @@ export function AppSettingsDialogContent() {
           );
         })}
       </div>
+
       <div className="font-semibold">Nombre de joueurs:</div>
       <div className="flex flex-row items-center justify-center gap-2 py-2">
         <Button
@@ -97,6 +115,37 @@ export function AppSettingsDialogContent() {
         >
           <Plus />
         </Button>
+      </div>
+
+      <div className="font-semibold">Minuteur:</div>
+      <div className="flex flex-row items-start space-x-2 gap-4 justify-center">
+        <div className="flex flex-col gap-4 w-[60%]">
+          <div className="flex flex-row gap-4 ">
+            <Switch
+              checked={useTimer}
+              onCheckedChange={handleUseTimerSwitch}
+              className="data-[state=checked]:bg-foreground data-[state=unchecked]:bg-gray-200"
+            />
+            <Label className="font-semibold">
+              {useTimer ? `Désactiver` : `Activer`} le minuteur
+            </Label>
+          </div>
+          <Slider
+            defaultValue={[30]}
+            min={5}
+            max={120}
+            disabled={!useTimer}
+            step={1}
+            onValueChange={(value) => {
+              handleTimerChange(value[0]);
+            }}
+            className="w-[100%] disabled:opacity-50 disabled:cursor-not-allowed [&[data-disabled]]:opacity-50"
+          />
+        </div>
+        <div className="flex flex-col text-center">
+          <div className="font-bold">{timerMaxTime / 1000}</div>
+          <div className="font-semibold">seconds</div>
+        </div>
       </div>
 
       <DialogFooter>
