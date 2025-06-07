@@ -4,16 +4,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { DialogHeader } from "./ui/dialog";
-import { Button } from "./ui/button";
-import {
-  Users,
-  Settings,
-  HelpCircle,
-  Play,
-  RotateCcw,
-  FileQuestion,
-  Settings2,
-} from "lucide-react";
+import { Users, Play, RotateCcw, FileQuestion, Settings2 } from "lucide-react";
 import { DialogClose } from "@radix-ui/react-dialog";
 
 export function TutorialStepperDialogContent() {
@@ -83,9 +74,7 @@ export function TutorialStepperDialogContent() {
       </div>
 
       <DialogFooter>
-        <DialogClose variant="outline" className="font-semibold">
-          OK
-        </DialogClose>
+        <DialogClose className="font-semibold">OK</DialogClose>
       </DialogFooter>
     </DialogContent>
   );
