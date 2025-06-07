@@ -7,29 +7,56 @@ import {
 } from "@/components/ui/dialog";
 import { DialogHeader } from "./ui/dialog";
 import llmPromptTemplate from "@/data/prompt.template";
-import { AlertCircle, Check, Copy } from "lucide-react";
+import { AlertCircle, Check, Copy, Minus, Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
+  selectDifficultyMax,
+  selectDifficultyMin,
+  selectFavouriteThemes,
+  selectNumberOfQuestions,
+  selectNumberOfTheme,
   selectQuestionsDict,
+  setDifficultyMax,
+  setDifficultyMin,
+  setFavouriteThemes,
+  setNumberOfQuestions,
+  setNumberOfTheme,
   setQuestionsFromString,
 } from "@/store/slices/questionsSlice";
 import { useSelector } from "react-redux";
 import { type Dispatch, type SetStateAction } from "react";
+import {
+  MAX_DIFFICULTY,
+  MAX_NUMBER_OF_QUESTIONS,
+  MAX_NUMBER_OF_THEMES,
+  MIN_DIFFICULTY,
+  MIN_NUMBER_OF_QUESTIONS,
+  MIN_NUMBER_OF_THEMES,
+} from "@/config";
 
 // TODO
-// - Tooltip around the copy button
-// - Hide and reveal inputs for new questions
+// - Possibility to change number of theme, questions, introduce themes and difficulty
 
 interface CopyButtonProps {
+  numberOfTheme: number;
+  numberOfQuestions: number;
+  difficultyMin: number;
+  difficultyMax: number;
+  favouriteThemes: string;
   className?: string;
   children?: React.ReactNode;
 }
 
 export const CopyButton: React.FC<CopyButtonProps> = ({
+  numberOfTheme,
+  numberOfQuestions,
+  difficultyMin,
+  difficultyMax,
+  favouriteThemes,
   className,
   children,
 }) => {
@@ -37,7 +64,15 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(llmPromptTemplate);
+      await navigator.clipboard.writeText(
+        llmPromptTemplate(
+          numberOfTheme,
+          numberOfQuestions,
+          difficultyMin,
+          difficultyMax,
+          favouriteThemes
+        )
+      );
       setStatus("success");
       setTimeout(() => setStatus("idle"), 2000);
     } catch (err) {
@@ -94,10 +129,49 @@ export function QuestionsSettingsDialogContent({
   const dispatch = useDispatch();
   const [newQuestionsValue, setNewQuestionsValue] = useState("");
   const currentQuestions = useSelector(selectQuestionsDict);
+  const numberOfTheme = useSelector(selectNumberOfTheme);
+  const numberOfQuestions = useSelector(selectNumberOfQuestions);
+  const difficultyMin = useSelector(selectDifficultyMin);
+  const difficultyMax = useSelector(selectDifficultyMax);
+  const favouriteThemes = useSelector(selectFavouriteThemes);
 
   const handleConfirmLoadQuestions = () => {
     dispatch(setQuestionsFromString(newQuestionsValue));
     setIsOpenQuestionsSettingDialog(false);
+  };
+
+  const handleNumberOfThemeChange = (newNumberOfTheme: number) => {
+    if (
+      newNumberOfTheme < MIN_NUMBER_OF_THEMES ||
+      newNumberOfTheme > MAX_NUMBER_OF_THEMES
+    )
+      return;
+    dispatch(setNumberOfTheme(newNumberOfTheme));
+  };
+
+  const handleNumberOfQuestionChange = (newNumberOfQuestion: number) => {
+    if (
+      newNumberOfQuestion < MIN_NUMBER_OF_QUESTIONS ||
+      newNumberOfQuestion > MAX_NUMBER_OF_QUESTIONS
+    )
+      return;
+    dispatch(setNumberOfQuestions(newNumberOfQuestion));
+  };
+
+  const handleDifficultyMinChange = (newDifficultyMin: number) => {
+    if (newDifficultyMin < MIN_DIFFICULTY || newDifficultyMin > difficultyMax)
+      return;
+    dispatch(setDifficultyMin(newDifficultyMin));
+  };
+
+  const handleDifficultyMaxChange = (newDifficultyMax: number) => {
+    if (newDifficultyMax < difficultyMin || newDifficultyMax > MAX_DIFFICULTY)
+      return;
+    dispatch(setDifficultyMax(newDifficultyMax));
+  };
+
+  const handleFavouriteThemesChange = (newFavouritesThemes: string) => {
+    dispatch(setFavouriteThemes(newFavouritesThemes));
   };
 
   return (
@@ -111,11 +185,125 @@ export function QuestionsSettingsDialogContent({
             code fournit par le LLM dans la zone ci-dessous pour lancer le jeu.
           </DialogDescription>
           <div className="justify-center items-center aspect-square">
-            <CopyButton />
+            <CopyButton
+              numberOfTheme={numberOfTheme}
+              numberOfQuestions={numberOfQuestions}
+              difficultyMin={difficultyMin}
+              difficultyMax={difficultyMax}
+              favouriteThemes={favouriteThemes}
+            />
           </div>
         </div>
       </DialogHeader>
-      <div>Collez le retour de votre LLM ci-dessous:</div>
+      <div className="font-bold">Paramètres des questions:</div>
+      <div className="flex flex-col gap-1">
+        <div className="flex flex-row justify-between items-center gap-1">
+          <div className="font-semibold">Nombre de thème</div>
+          <div className="flex flex-row items-center justify-center gap-2 py-2">
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleNumberOfThemeChange(numberOfTheme - 1);
+              }}
+              disabled={numberOfTheme <= MIN_NUMBER_OF_THEMES}
+            >
+              <Minus />
+            </Button>
+            <div className="p-2 min-w-16 h-10 bg-background text-center rounded-lg aspect-square">{`${numberOfTheme}`}</div>
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleNumberOfThemeChange(numberOfTheme + 1);
+              }}
+              disabled={numberOfTheme >= MAX_NUMBER_OF_THEMES}
+            >
+              <Plus />
+            </Button>
+          </div>
+        </div>
+        <div className="flex flex-row justify-between items-center gap-1">
+          <div className="font-semibold">Nombre de questions par thème</div>
+          <div className="flex flex-row items-center justify-center gap-2 py-2">
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleNumberOfQuestionChange(numberOfQuestions - 1);
+              }}
+              disabled={numberOfQuestions <= MIN_NUMBER_OF_QUESTIONS}
+            >
+              <Minus />
+            </Button>
+            <div className="p-2 min-w-16 h-10 bg-background text-center rounded-lg aspect-square">{`${numberOfQuestions}`}</div>
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleNumberOfQuestionChange(numberOfQuestions + 1);
+              }}
+              disabled={numberOfQuestions >= MAX_NUMBER_OF_QUESTIONS}
+            >
+              <Plus />
+            </Button>
+          </div>
+        </div>
+        <div className="flex flex-row justify-between items-center gap-1">
+          <div className="font-semibold">Difficulté minimum</div>
+          <div className="flex flex-row items-center justify-center gap-2 py-2">
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleDifficultyMinChange(difficultyMin - 1);
+              }}
+              disabled={difficultyMin <= MIN_DIFFICULTY}
+            >
+              <Minus />
+            </Button>
+            <div className="p-2 min-w-16 h-10 bg-background text-center rounded-lg aspect-square">{`${difficultyMin}`}</div>
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleDifficultyMinChange(difficultyMin + 1);
+              }}
+              disabled={difficultyMin >= difficultyMax}
+            >
+              <Plus />
+            </Button>
+          </div>
+        </div>
+        <div className="flex flex-row justify-between items-center gap-1">
+          <div className="font-semibold">Difficulté maximum</div>
+          <div className="flex flex-row items-center justify-center gap-2 py-2">
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleDifficultyMaxChange(difficultyMax - 1);
+              }}
+              disabled={difficultyMax <= difficultyMin}
+            >
+              <Minus />
+            </Button>
+            <div className="p-2 min-w-16 h-10 bg-background text-center rounded-lg aspect-square">{`${difficultyMax}`}</div>
+            <Button
+              className="p-2 aspect-square flex-none"
+              onClick={() => {
+                handleDifficultyMaxChange(difficultyMax + 1);
+              }}
+              disabled={difficultyMax >= MAX_DIFFICULTY}
+            >
+              <Plus />
+            </Button>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between items-start gap-1">
+          <div className="font-semibold">Thèmes à favoriser</div>
+          <Input
+            value={favouriteThemes}
+            onChange={(e) => {
+              handleFavouriteThemesChange(e.target.value);
+            }}
+          ></Input>
+        </div>
+      </div>
+      <div className="font-bold">Collez le retour de votre LLM ci-dessous:</div>
       <Input
         placeholder={`${JSON.stringify(currentQuestions)}`}
         onChange={(e) => {

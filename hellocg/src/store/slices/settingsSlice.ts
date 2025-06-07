@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/store";
-import { APP_THEME_LIST } from "@/config";
+import { APP_THEME_LIST, DEFAULT_NUMBER_OF_PLAYERS } from "@/config";
 
 export const APP_THEME_NAMES = APP_THEME_LIST.map(
   (theme) => theme.indexCSSName
@@ -27,7 +27,7 @@ const getStoredTheme = (): AppThemeName => {
 
 const initialState: settingsState = {
   appTheme: getStoredTheme(),
-  playerNumber: 4,
+  playerNumber: DEFAULT_NUMBER_OF_PLAYERS,
   useTimer: false,
   timerMaxTime: 20000, // 20 seconds
 };

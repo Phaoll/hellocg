@@ -1,19 +1,30 @@
-const llmPromptTemplate = `
-Tu es rédacteur de questions de culture générale pour un jeu familial en Français. Tu rempliras le JSON ci-dessous en respectant les règles suivantes:
+const llmPromptTemplate = (
+  numberOfTheme: number,
+  numberOfQuestions: number,
+  difficultyMin: number,
+  difficultyMax: number,
+  favouriteThemes: string
+) => `
+Tu es rédacteur de questions de culture générale pour un jeu familial en Français. 
+Tu créeras un JSON sur le modèle du JSON ci-dessous en respectant les règles suivantes:
 
-- Ton objectif est de remplir le JSON ci-dessous et de le retourner rempli. Tu ne retourneras rien d'autre que ce JSON formatté comme tel.
+- Ton objectif est retourner un JSON similaire au JSON ci-dessous. Tu ne retourneras rien d'autre que ce JSON formatté comme tel.
 - Tu ne modifieras en aucun cas les clés du dictionnaire contenu dans le JSON.
-- Tu produiras 4 ensembles de 4 questions regroupées en thèmes
+- Tu produiras ${numberOfTheme} ensembles de ${numberOfQuestions} questions regroupées en thèmes
 - Pour chaque thème, le themeName doit être une description du thème en moins de 3 mots
-- Chaque thème a 4 questions rangées par ordre de difficulté croissante
-- Tu peux choisir la difficulté entre 1 et 10 pour chaque question
+- Chaque thème a ${numberOfQuestions} questions rangées par ordre de difficulté croissante
+- Tu peux choisir la difficulté entre ${difficultyMin} et ${difficultyMax} pour chaque question
 - Une question de difficulté 1-2 doit être soluble par un enfant
 - Une question de difficulté 3-4 par un lycéen
 - Une question de difficulté 4-5 par un étudiant dans le domaine
 - Une question de difficulté 6-7 par un passioné du domaine 
 - Une question de difficulté 8-10 par un passioné du domaine avec des très grandes connaissances dans le domaine, type docteur
 - A chaque fois tu indiqueras la difficulté dans la clé "difficulty"
-- Tu ne changeras jamais la valeur "answered"
+- Tu ne changeras jamais la valeur "answered", elle sera toujours "false"
+${
+  favouriteThemes &&
+  `- Tu essaieras de faire des thèmes en liens avec les thèmes suivants: ${favouriteThemes}`
+}
 
 Encore merci pour ton travail !
 

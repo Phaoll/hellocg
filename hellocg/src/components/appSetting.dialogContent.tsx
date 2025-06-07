@@ -22,15 +22,12 @@ import { useAppSelector } from "@/store/hooks/hooks";
 import { Minus, Plus } from "lucide-react";
 import {
   APP_THEME_LIST,
-  MAX_NUMBER_OF_PLAYER,
-  MIN_NUMBER_OF_PLAYER,
+  MAX_NUMBER_OF_PLAYERS,
+  MIN_NUMBER_OF_PLAYERS,
 } from "@/config";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
-
-// TODO
-// Toaster for player number out of range
 
 export function AppSettingsDialogContent() {
   const dispatch = useDispatch();
@@ -45,8 +42,8 @@ export function AppSettingsDialogContent() {
 
   const playerSetterWrapper = (newPlayerNumber: number) => {
     if (
-      newPlayerNumber < MIN_NUMBER_OF_PLAYER ||
-      newPlayerNumber > MAX_NUMBER_OF_PLAYER
+      newPlayerNumber < MIN_NUMBER_OF_PLAYERS ||
+      newPlayerNumber > MAX_NUMBER_OF_PLAYERS
     )
       return;
     setPlayerCounter(newPlayerNumber);
@@ -100,7 +97,7 @@ export function AppSettingsDialogContent() {
           onClick={() => {
             playerSetterWrapper(playerCounter - 1);
           }}
-          disabled={playerCounter <= MIN_NUMBER_OF_PLAYER}
+          disabled={playerCounter <= MIN_NUMBER_OF_PLAYERS}
         >
           <Minus />
         </Button>
@@ -110,7 +107,7 @@ export function AppSettingsDialogContent() {
           onClick={() => {
             playerSetterWrapper(playerCounter + 1);
           }}
-          disabled={playerCounter >= MAX_NUMBER_OF_PLAYER}
+          disabled={playerCounter >= MAX_NUMBER_OF_PLAYERS}
         >
           <Plus />
         </Button>
