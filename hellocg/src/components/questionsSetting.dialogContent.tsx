@@ -195,7 +195,7 @@ export function QuestionsSettingsDialogContent({
       <div className="font-bold">Paramètres des questions:</div>
       <div className="flex flex-col gap-1">
         <div className="flex flex-row justify-between items-center gap-1">
-          <div className="font-semibold">Nombre de thème</div>
+          <div className="">Nombre de thème</div>
           <div className="flex flex-row items-center justify-center gap-2 py-2">
             <Button
               className="p-2 aspect-square flex-none"
@@ -219,7 +219,7 @@ export function QuestionsSettingsDialogContent({
           </div>
         </div>
         <div className="flex flex-row justify-between items-center gap-1">
-          <div className="font-semibold">Nombre de questions par thème</div>
+          <div className="">Nombre de questions par thème</div>
           <div className="flex flex-row items-center justify-center gap-2 py-2">
             <Button
               className="p-2 aspect-square flex-none"
@@ -243,7 +243,7 @@ export function QuestionsSettingsDialogContent({
           </div>
         </div>
         <div className="flex flex-row justify-between items-center gap-1">
-          <div className="font-semibold">Difficulté minimum</div>
+          <div className="">Difficulté minimum</div>
           <div className="flex flex-row items-center justify-center gap-2 py-2">
             <Button
               className="p-2 aspect-square flex-none"
@@ -267,7 +267,7 @@ export function QuestionsSettingsDialogContent({
           </div>
         </div>
         <div className="flex flex-row justify-between items-center gap-1">
-          <div className="font-semibold">Difficulté maximum</div>
+          <div className="">Difficulté maximum</div>
           <div className="flex flex-row items-center justify-center gap-2 py-2">
             <Button
               className="p-2 aspect-square flex-none"
@@ -291,12 +291,14 @@ export function QuestionsSettingsDialogContent({
           </div>
         </div>
         <div className="flex flex-col justify-between items-start gap-1">
-          <div className="font-semibold">Thèmes à favoriser</div>
+          <div className="">Thèmes à favoriser</div>
           <Input
             value={favouriteThemes}
             onChange={(e) => {
               handleFavouriteThemesChange(e.target.value);
             }}
+            placeholder="Sur quoi voulez vous êtere interrogés ?"
+            className="border-foreground"
           ></Input>
         </div>
       </div>
@@ -311,6 +313,7 @@ export function QuestionsSettingsDialogContent({
             handleConfirmLoadQuestions();
           }
         }}
+        className="border-foreground"
       />
       <DialogFooter>
         <DialogClose asChild>

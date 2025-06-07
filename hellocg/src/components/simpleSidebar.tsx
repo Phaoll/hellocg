@@ -1,4 +1,4 @@
-import { FileQuestion, Settings2 } from "lucide-react";
+import { CircleHelp, FileQuestion, Settings2 } from "lucide-react";
 
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -17,6 +17,7 @@ import { AppSettingsDialogContent } from "./appSetting.dialogContent";
 import { QuestionsSettingsDialogContent } from "./questionsSetting.dialogContent";
 import { useAppSelector } from "@/store/hooks/hooks";
 import { selectPlayerNumber } from "@/store/slices/settingsSlice";
+import { TutorialStepperDialogContent } from "./tutorialStepper.dialogContent";
 
 // TODO
 // - Player avatar
@@ -24,6 +25,22 @@ import { selectPlayerNumber } from "@/store/slices/settingsSlice";
 export function SimpleSidebar() {
   const [isOpenQuestionsSettingDialog, setIsOpenQuestionsSettingDialog] =
     useState(false);
+  const [isOpenTutorialStepperDialog, setIsOpenTutorialStepperDialog] =
+    useState(() => {
+      try {
+        const storedValue = localStorage.getItem("isFirstVisit");
+        const isFirstVisit = storedValue === null;
+
+        // Mark as visited
+        if (isFirstVisit) {
+          localStorage.setItem("isFirstVisit", "false");
+        }
+
+        return isFirstVisit;
+      } catch {
+        return true; // Default for SSR
+      }
+    });
   const playerNumber = useAppSelector(selectPlayerNumber);
 
   return (
@@ -59,6 +76,7 @@ export function SimpleSidebar() {
             </DialogTrigger>
             <AppSettingsDialogContent />
           </Dialog>
+
           <Dialog
             open={isOpenQuestionsSettingDialog}
             onOpenChange={setIsOpenQuestionsSettingDialog}
@@ -76,6 +94,23 @@ export function SimpleSidebar() {
             <QuestionsSettingsDialogContent
               setIsOpenQuestionsSettingDialog={setIsOpenQuestionsSettingDialog}
             />
+          </Dialog>
+
+          <Dialog
+            open={isOpenTutorialStepperDialog}
+            onOpenChange={setIsOpenTutorialStepperDialog}
+          >
+            <DialogTrigger>
+              <SidebarMenuItem key={"Configurer"}>
+                <div
+                  className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md w-full`}
+                >
+                  <CircleHelp size={20} />
+                  <span>Tutoriel</span>
+                </div>
+              </SidebarMenuItem>
+            </DialogTrigger>
+            <TutorialStepperDialogContent />
           </Dialog>
         </SidebarMenu>
       </SidebarFooter>

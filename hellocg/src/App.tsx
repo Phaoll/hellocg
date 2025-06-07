@@ -15,6 +15,8 @@ import { useEffect } from "react";
 // TODO
 // Favicon + Nom d'onglet
 // vrai nom de domaine + https
+// Save all parameters in the cache
+// Back to default parameter
 
 function App() {
   const questions = useAppSelector(selectQuestionsDict);

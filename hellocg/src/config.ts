@@ -3,11 +3,11 @@ export const MAX_NUMBER_OF_PLAYERS = 6;
 export const DEFAULT_NUMBER_OF_PLAYERS = 4;
 
 export const MIN_NUMBER_OF_THEMES = 2;
-export const MAX_NUMBER_OF_THEMES = 10;
+export const MAX_NUMBER_OF_THEMES = 6;
 export const DEFAULT_NUMBER_OF_THEMES = 4;
 
 export const MIN_NUMBER_OF_QUESTIONS = 2;
-export const MAX_NUMBER_OF_QUESTIONS = 10;
+export const MAX_NUMBER_OF_QUESTIONS = 8;
 export const DEFAULT_NUMBER_OF_QUESTIONS = 4;
 
 export const MIN_DIFFICULTY = 1;
