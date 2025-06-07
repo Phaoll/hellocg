@@ -38,9 +38,6 @@ import {
   MIN_NUMBER_OF_THEMES,
 } from "@/config";
 
-// TODO
-// - Possibility to change number of theme, questions, introduce themes and difficulty
-
 interface CopyButtonProps {
   numberOfTheme: number;
   numberOfQuestions: number;
